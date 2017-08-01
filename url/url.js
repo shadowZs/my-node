@@ -1,22 +1,13 @@
-var url=require('url');
-var http=require('http');
-var fs=require('fs');
+var url = require('url');
 
-http.createServer(function(request,response){
-	response.writeHead(200,{'ContentType':'text/plain'});
-	response.write('hello world');
+var str='https://github.com:8080/search?utf8=%E2%9C%93&q=node&type=#user';
 
-	var pathname=url.parse(request.url).pathname;
-	var file=pathname.slice(1);
-	var filepath='./public';
+var urlObj=url.parse(str);  console.log(urlObj);  //将str转换成对象
 
-	fs.readFile(filepath+file,function(err,data){
-		console.log(data);
-		response.end(data);
-	})
+var str=url.format(urlObj);   console.log(str);   //将对象转换成字符串
 
-	
-	
-}).listen('8888');
-
-console.log('service run started') 
+var pathName=urlObj.pathname    //'/yours_back/admin/sys/push_list.jsp',
+var path=urlObj.pathname        //pathname+search
+var query=urlObj.query          //'utf8=%E2%9C%93&q=node&type=',
+var search=urlObj.search        //'?utf8=%E2%9C%93&q=node&type='
+var hash=urlObj.hash            //#user  url锚部分 从#开始的部分
