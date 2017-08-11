@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>generator</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+
+//斐波纳切数列
+ function fib(max){
+ 	var t,
+ 		a=0,
+ 		b=1,
+ 		arr=[0,1]
+
+ 		while(arr.length < max){
+ 			t=a+b;
+ 			a=b;
+ 			b=t;
+ 			arr.push(b);
+ 		}
+ 		return arr;
+
+ }
+
+ // console.log(fib(5));
+
+
+ function* fibs(max){
+ 	var t,
+ 		a=0,
+ 		b=1,
+ 		n=1;
+ 		while(n < max){
+ 			yield a;
+ 			a=b;
+ 			b=a+b;
+ 			n++;
+ 		}
+ 		return a;
+ }
+
+var f=fibs(5);
+console.log(f.next());
+console.log(f.next());
+console.log(f.next());
+
+for(var x in fib(6)){
+	console.log(x);    //0 1 2 3 4 5
+}
+</script>
